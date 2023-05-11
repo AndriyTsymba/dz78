@@ -1,13 +1,20 @@
-#3
-def logg_call(func):
+#4
+import time
+def timer(func):
     def wrapper(*args,**kwargs):
-        returning = func(*args,**kwargs)
-        print(f"Функція приймає фргементи {args},та кваргс {kwargs} та повертає {returning}")
-        return returning
+        start_time = time.time()
+        result = func(*args,**kwargs)
+        end_time = time.time()
+        time.sleep(3)
+        print(f"Функція  виконалася за {end_time - start_time} секунд(и)")
+        return result
     return wrapper
-@logg_call
-def temperature(C):
-    return (C*1.8)+32
-print(temperature(32))
-print(temperature(40))
-print(temperature(22))
+
+@timer
+def function(a):
+  for i in range(2,a):
+    if a % i == 0:
+      return("Число не є простим")
+    else:
+      return("Число є простим")
+print(function(5))
